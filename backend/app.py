@@ -82,6 +82,14 @@ def create_app(config_class=Config):
 
     with app.app_context():
         db.create_all()
+        try:
+            try:
+                from .seed import seed_demo_user
+            except ImportError:
+                from seed import seed_demo_user
+            seed_demo_user(force=False)
+        except Exception as seed_err:
+            print(f"[SEED] Notice during auto-seed: {seed_err}")
 
     return app
 

@@ -61,6 +61,16 @@ def login():
         return error_response("Email and password are required", status_code=400)
 
     user = User.query.filter_by(email=email).first()
+    if not user and email == "demo@habittracker.io":
+        try:
+            try:
+                from ..seed import seed_demo_user
+            except ImportError:
+                from seed import seed_demo_user
+            user = seed_demo_user(force=False)
+        except Exception:
+            pass
+
     if not user or not user.check_password(password):
         return error_response("Invalid email or password", status_code=401)
 
