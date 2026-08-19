@@ -85,8 +85,9 @@ def create_app(config_class=Config):
 
     return app
 
+app = create_app()
+
 if __name__ == "__main__":
-    app = create_app()
     port = int(os.getenv("PORT", 5000))
     print(f"[API] Habit Tracker Flask API running on http://127.0.0.1:{port}")
     app.run(host="0.0.0.0", port=port, debug=True)
