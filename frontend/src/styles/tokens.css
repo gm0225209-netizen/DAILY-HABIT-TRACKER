@@ -1,0 +1,65 @@
+/*
+  MODULE: tokens.css
+  -------------------
+  Design language for the tracker, built around one idea: "don't break
+  the chain" (the old comedian's trick for building habits — mark an X
+  every day and don't break the chain of X's). Every module below reads
+  its colors/type from these variables instead of hardcoding values.
+*/
+
+:root {
+  /* -- Color: deep ink canvas, warm parchment cards, a forged-metal accent -- */
+  --ink-950: #14201C;      /* app background */
+  --ink-900: #1B2A25;      /* card / panel background */
+  --ink-700: #3A4C45;      /* borders, dividers */
+  --paper-100: #EFE9DA;    /* text on dark surfaces */
+  --paper-300: #B9C4BC;    /* secondary text on dark surfaces */
+
+  --link-done: #2F6F63;    /* a forged, solid chain link (completed day) */
+  --link-done-bright: #4FA394;
+  --link-today: #E8A33D;   /* the link currently being forged (today) */
+  --link-broken: #6B4A42;  /* a snapped link (missed day) */
+
+  --danger: #C0524A;
+
+  /* -- Type: a sturdy grotesk for headings, humanist body, mono for dates/numbers -- */
+  --font-display: "Space Grotesk", "Segoe UI", sans-serif;
+  --font-body: "Inter", "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", "Courier New", monospace;
+
+  /* -- Spacing & shape -- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --shadow-card: 0 8px 24px rgba(0, 0, 0, 0.28);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--ink-950);
+  color: var(--paper-100);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+button {
+  font-family: var(--font-body);
+  cursor: pointer;
+}
+
+/* visible keyboard focus everywhere, per accessibility floor */
+:focus-visible {
+  outline: 2px solid var(--link-today);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; }
+}
